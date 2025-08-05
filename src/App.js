@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+
+
+
+import React,{useState} from 'react';
+import './App.css';
+import Questions from './Questions.json';
+import Display from './Display';
+import './App.css'
+
+const App = () => {
+  let tempMarks = []
+  const[marks,setMarks] = useState([]);
+  const changeHandler = (value,index) =>{
+    tempMarks = marks;
+    tempMarks[index]= value;
+    setMarks([...tempMarks]);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <center>
+       {Questions.map((question,index) => {
+              return(
+               <Display question={question} index={index} changeHandler={changeHandler}/>
+              )
+       })
+       }
+       <button  onClick={() => alert(marks.reduce((a,b)=> a+b,0))}>End Quiz</button>
+      </center>
     </div>
   );
 }

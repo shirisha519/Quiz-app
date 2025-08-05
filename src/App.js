@@ -19,6 +19,7 @@ const App = () => {
   return (
     <div>
       <center>
+        <h1>Quiz Application</h1>
        {Questions.map((question,index) => {
               return(
                <Display question={question} index={index} changeHandler={changeHandler}/>
